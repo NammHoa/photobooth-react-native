@@ -8,7 +8,7 @@ const COLUMN_COUNT = 3;
 
 export default function AlbumScreen() {
   const router = useRouter();
-  const { width } = Dimensions.get('window'); // For initial, but use hook for responsive:
+  const { width } = Dimensions.get('window');
   const windowWidth = useWindowDimensions().width;
   const ITEM_SIZE = windowWidth / COLUMN_COUNT;
   
@@ -33,7 +33,6 @@ export default function AlbumScreen() {
 
       const files = await FileSystem.readDirectoryAsync(albumPath);
       
-      // Lọc ra các file ảnh (jpg) và tạo URI cho FlatList
       const imageFiles = files
         .filter(file => file.endsWith('.jpg'))
         .map((file, index) => ({
@@ -41,7 +40,6 @@ export default function AlbumScreen() {
           uri: albumPath + file
         }));
 
-      // Đảo ngược mảng để ảnh mới nhất lên đầu
       setAssets(imageFiles.reverse());
       
     } catch (err) {
